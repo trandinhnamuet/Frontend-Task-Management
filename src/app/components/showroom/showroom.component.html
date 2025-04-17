@@ -1,0 +1,52 @@
+<h2>Showroom Management</h2>
+
+<!-- Form thêm showroom -->
+<mat-form-field>
+  <input matInput placeholder="Showroom Name" [(ngModel)]="newShowroom.showroomName" />
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addShowroom()">Add Showroom</button>
+
+<!-- Form chỉnh sửa showroom -->
+<div *ngIf="selectedShowroom">
+  <h3>Edit Showroom</h3>
+  <mat-form-field>
+    <input matInput placeholder="Showroom Name" [(ngModel)]="selectedShowroom.showroomName" />
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="updateShowroom()">Update</button>
+  <button mat-button (click)="selectedShowroom = null">Cancel</button>
+</div>
+
+<!-- Bảng danh sách showroom -->
+<table mat-table [dataSource]="showrooms" class="mat-elevation-z8">
+  
+  <!-- Cột ID -->
+  <ng-container matColumnDef="showroomID">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let showroom"> {{ showroom.showroomID }} </td>
+  </ng-container>
+
+  <!-- Cột Showroom Name -->
+  <ng-container matColumnDef="showroomName">
+    <th mat-header-cell *matHeaderCellDef> Showroom Name </th>
+    <td mat-cell *matCellDef="let showroom"> {{ showroom.showroomName }} </td>
+  </ng-container>
+
+  <!-- Cột Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let showroom">
+      <button mat-icon-button color="primary" (click)="editShowroom(showroom)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteShowroom(showroom.showroomID)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Header Row -->
+  <tr mat-header-row *matHeaderRowDef="['showroomID', 'showroomName', 'actions']"></tr>
+  
+  <!-- Data Rows -->
+  <tr mat-row *matRowDef="let row; columns: ['showroomID', 'showroomName', 'actions']"></tr>
+</table>

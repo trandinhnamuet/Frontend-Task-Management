@@ -1,0 +1,58 @@
+<h2 style="text-align: center;">Role Management</h2>
+
+<!-- Form thêm Role -->
+<div style="display: flex; justify-content: space-between; align-items: center; width: 50%; margin: 0 auto 20px;">
+  <mat-form-field style="flex: 1; margin-right: 10px;">
+    <input matInput placeholder="Role Name" [(ngModel)]="newRole.roleName" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addRole()">Add Role</button>
+</div>
+
+<!-- Form chỉnh sửa Role -->
+<div *ngIf="selectedRole" style="display: flex; justify-content: space-between; align-items: center; width: 50%; margin: 0 auto 20px;">
+  <h3 style="margin-right: 20px;">Edit Role</h3>
+  <mat-form-field style="flex: 1; margin-right: 10px;">
+    <input matInput placeholder="Role Name" [(ngModel)]="selectedRole.roleName" />
+  </mat-form-field>
+  <div style="display: flex; gap: 10px;">
+    <button mat-raised-button color="accent" (click)="updateRole()">Update</button>
+    <button mat-button (click)="selectedRole = null">Cancel</button>
+  </div>
+</div>
+
+<!-- Bảng hiển thị danh sách Role -->
+<div style="width: 80%; margin: 0 auto;">
+  <table mat-table [dataSource]="roles" class="mat-elevation-z8" style="width: 100%;">
+    
+    <!-- Cột ID -->
+    <ng-container matColumnDef="roleID">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID </th>
+      <td mat-cell *matCellDef="let role" style="text-align: center;"> {{ role.roleID }} </td>
+    </ng-container>
+
+    <!-- Cột Role Name -->
+    <ng-container matColumnDef="roleName">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Role Name </th>
+      <td mat-cell *matCellDef="let role" style="text-align: center;"> {{ role.roleName }} </td>
+    </ng-container>
+
+    <!-- Cột Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Actions </th>
+      <td mat-cell *matCellDef="let role" style="text-align: center;">
+        <button mat-icon-button color="primary" (click)="editRole(role)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteRole(role.roleID)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header Row -->
+    <tr mat-header-row *matHeaderRowDef="['roleID', 'roleName', 'actions']"></tr>
+    
+    <!-- Data Rows -->
+    <tr mat-row *matRowDef="let row; columns: ['roleID', 'roleName', 'actions']"></tr>
+  </table>
+</div>
