@@ -1,5 +1,10 @@
-<app-role></app-role>
--------------------------------------------------
-<app-showroom></app-showroom>
-<app-task></app-task>
-<app-user></app-user>
+<div class="flex h-screen">
+    <app-left-sidebar></app-left-sidebar>
+    <div class="flex-1 bg-gray-100">
+      <app-header></app-header>
+      <main class="p-4">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </div>

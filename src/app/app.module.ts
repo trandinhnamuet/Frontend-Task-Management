@@ -23,6 +23,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { LeftSidebarComponent } from './layout/left-sidebar/left-sidebar.component';
+import { TaskManagementComponent } from './layout/task-management/task-management.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +38,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     TaskComponent,
     UserComponent,
     TestComponent,
+    HeaderComponent,
+    FooterComponent,
+    LeftSidebarComponent,
+    TaskManagementComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

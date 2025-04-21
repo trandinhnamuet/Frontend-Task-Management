@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task.model';
 
@@ -29,5 +29,19 @@ export class TaskService {
 
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  // Lọc theo userId và showroomId
+  getTasksByUserAndShowroom(userId?: number, showroomId?: number): Observable<Task[]> {
+    let params = new HttpParams();
+
+    if (userId) {
+      params = params.append('userId', userId.toString());
+    }
+    if (showroomId) {
+      params = params.append('showroomId', showroomId.toString());
+    }
+
+    return this.http.get<Task[]>(`${this.apiUrl}/filter`, { params });
   }
 }
