@@ -44,4 +44,14 @@ export class TaskService {
 
     return this.http.get<Task[]>(`${this.apiUrl}/filter`, { params });
   }
+
+  createTaskWithUser(task: Task, userId: number): Observable<Task> {
+    const payload = {
+      task: task,
+      userId: userId
+    };
+  
+    return this.http.post<Task>(`${this.apiUrl}/create-with-user`, payload);
+  }
+  
 }

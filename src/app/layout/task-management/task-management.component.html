@@ -1,22 +1,27 @@
-<!-- Dropdown chọn showroom -->
-<div class="p-4 max-w-md mx-auto">
+<h2 class="text-xl font-semibold text-gray-800 mb-4">Toàn bộ đầu việc</h2>
+
+<div class="flex flex-wrap gap-4 p-4 max-w-4xl mx-auto">
+  <!-- Dropdown chọn showroom -->
+  <div class="flex-1 min-w-[200px]">
     <label for="showroom" class="block mb-2 font-medium">Chọn Showroom:</label>
     <select [(ngModel)]="selectedShowroom" (ngModelChange)="loadTasks()" id="showroom" class="w-full p-2 border rounded">
-        <option *ngFor="let showroom of showrooms" [value]="showroom.showroomID">
-            {{ showroom.showroomName }}
-        </option>
+      <option *ngFor="let showroom of showrooms" [value]="showroom.showroomID">
+        {{ showroom.showroomName }}
+      </option>
     </select>
-</div>
+  </div>
 
-<!-- Dropdown chọn User -->
-<div class="p-4 max-w-md mx-auto">
+  <!-- Dropdown chọn User -->
+  <div class="flex-1 min-w-[200px]">
     <label for="user" class="block mb-2 font-medium">Chọn User:</label>
     <select [(ngModel)]="selectedUser" (ngModelChange)="loadTasks()" id="user" class="w-full p-2 border rounded">
-        <option *ngFor="let user of users" [value]="user.userID">
-            {{ user.fullName }}
-        </option>
+      <option *ngFor="let user of users" [value]="user.userID">
+        {{ user.fullName }}
+      </option>
     </select>
+  </div>
 </div>
+
 
 <!-- Bảng danh sách Task -->
 <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
