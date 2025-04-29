@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task.model';
+import { UserTasks } from '../models/user-tasks.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,4 +55,9 @@ export class TaskService {
     return this.http.post<Task>(`${this.apiUrl}/create-with-user`, payload);
   }
   
+  // Thêm phương thức mới: Lấy danh sách task theo vai trò của user
+  getTasksByRole(userId: number): Observable<UserTasks[]> {
+    return this.http.get<UserTasks[]>(`${this.apiUrl}/by-role/${userId}`);
+  }
+
 }

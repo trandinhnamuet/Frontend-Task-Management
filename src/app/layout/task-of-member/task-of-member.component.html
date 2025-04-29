@@ -1,0 +1,76 @@
+<div class="container">
+    
+  
+    <!-- Hiển thị thông báo nếu userId không hợp lệ -->
+    <div *ngIf="!isLoading && userId === null" class="error-message">
+      <p>Không tìm thấy thông tin người dùng. Vui lòng đăng nhập lại.</p>
+    </div>
+  
+    <!-- Hiển thị spinner khi đang tải -->
+    <!-- <div class="loading-spinner" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div> -->
+  
+    <!-- Hiển thị danh sách user và task của họ -->
+    <div *ngIf="!isLoading && userId !== null">
+      <div *ngIf="userTasks.length === 0" class="no-data">
+        <p>Không có thành viên hoặc task nào để hiển thị.</p>
+      </div>
+  
+      <div *ngFor="let user of userTasks" class="user-section">
+        <h3> Danh sách Task của {{ user.fullName }}</h3>
+        <table mat-table [dataSource]="user.tasks" matSort class="mat-elevation-z8">
+          <!-- Cột TaskID -->
+          <ng-container matColumnDef="taskID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let task">{{ task.taskID }}</td>
+          </ng-container>
+  
+          <!-- Cột TaskName -->
+          <ng-container matColumnDef="taskName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên Task</th>
+            <td mat-cell *matCellDef="let task">{{ task.taskName }}</td>
+          </ng-container>
+  
+          <!-- Cột TaskDescription -->
+          <ng-container matColumnDef="taskDescription">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mô tả</th>
+            <td mat-cell *matCellDef="let task">{{ task.taskDescription }}</td>
+          </ng-container>
+  
+          <!-- Cột IsFinished -->
+          <ng-container matColumnDef="isFinished">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
+            <td mat-cell *matCellDef="let task">
+              {{ task.isFinished ? 'Đã hoàn thành' : 'Chưa hoàn thành' }}
+            </td>
+          </ng-container>
+  
+          <!-- Cột CreationTime -->
+          <ng-container matColumnDef="creationTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày tạo</th>
+            <td mat-cell *matCellDef="let task">{{ task.creationTime | date:'dd/MM/yyyy HH:mm' }}</td>
+          </ng-container>
+  
+          <!-- Cột FinishedTime -->
+          <ng-container matColumnDef="finishedTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày hoàn thành</th>
+            <td mat-cell *matCellDef="let task">
+              {{ task.finishedTime ? (task.finishedTime | date:'dd/MM/yyyy HH:mm') : 'Chưa hoàn thành' }}
+            </td>
+          </ng-container>
+  
+          <!-- Hàng tiêu đề -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <!-- Hàng dữ liệu -->
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+          <!-- Thông báo khi không có task -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="6">Không có task nào cho thành viên này.</td>
+          </tr>
+        </table>
+        <br><br>
+      </div>
+    </div>
+  </div>

@@ -5,6 +5,8 @@ import { TaskManagementComponent } from './layout/task-management/task-managemen
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { MyTaskComponent } from './layout/my-task/my-task.component';
+import { TaskOfMemberComponent } from './layout/task-of-member/task-of-member.component';
+import { UserProfileComponent } from './layout/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: MyTaskComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'task-management', component: TaskManagementComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'task-of-member', component: TaskOfMemberComponent },
+  { path: 'user-profile', component: UserProfileComponent },
 ];
 
 @NgModule({

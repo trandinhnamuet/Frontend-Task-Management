@@ -29,6 +29,12 @@ import { LeftSidebarComponent } from './layout/left-sidebar/left-sidebar.compone
 import { TaskManagementComponent } from './layout/task-management/task-management.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { TaskOfMemberComponent } from './layout/task-of-member/task-of-member.component';
+import { UserProfileComponent } from './layout/user-profile/user-profile.component';
+import { AssignTaskDialogComponent } from './components/assign-task-dialog/assign-task-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,10 @@ import { RegisterComponent } from './authentication/register/register.component'
     LeftSidebarComponent,
     TaskManagementComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TaskOfMemberComponent,
+    AssignTaskDialogComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +68,15 @@ import { RegisterComponent } from './authentication/register/register.component'
     MatSelectModule,
     MatDatepickerModule,
     BrowserAnimationsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatDividerModule
+
+
+
+
+
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
